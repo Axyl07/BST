@@ -63,35 +63,54 @@ export class Tree {
     }
     return root;
   }
-  deleteItem(value, root) {
-    if (root.left===null||root.left.data===value) {
-      root.left = null
-    }
-    if (root.right===null||root.right.data===value) {
-      root.right = null
-    }
 
-    else {
-      if (value<root.data) {
-        this.deleteItem(value, root.left);
-      }
-      else {
-        this.deleteItem(value, root.right);
-      }
+  getSuccessor(curentNode) {
+    curentNode = curentNode.right;
+    while (curentNode !== null && curentNode.left !== null) {
+      curentNode = curentNode.left;
     }
-    // if (root.data === value) {
-    //   root = null;
-    //   return;
-    // }
-    // // if (root === null) {
-    // //   return;
-    // // }
-    // else {
-    //   if (value < root.data) {
-    //     this.deleteItem(value, root.left);
-    //   } else if (value > root.data) {
-    //     this.deleteItem(value, root.right);
-    //   }
-    // }
+    return curentNode;
+  }
+  deleteItem(value, root) {
+    if (root === null) {
+      return root; //base case
+    }
+    if (value<root.data) {
+      root.left = this.deleteItem(value,root.left)
+    } else if (value > root.data) {
+      root.right = this.deleteItem(value,root.right)//traverse from the root till correct node is reached
+    }
+    else { //when value is equal to the node's value
+      if (root.left===null) {
+        return root.right;
+      }
+      if (root.right===null) {
+        return root.left;
+      } //cases when there is only single child of the target node
+      
+      let successor = this.getSuccessor(root);
+      root.data = successor.data;
+      root.right = this.deleteItem(successor.data, root.right);//case when both childs are present
+      
+      
+      
+    }
+    return root;
+
+    
+  }
+  find(value, root) {
+    if (root === null) {
+      return root;
+    }
+    if (root.data === value) {
+      return root;
+    }
+    else if (value < root.data) {
+      return this.find(value, root.left);
+    }
+    else if (value > root.data) {
+      return this.find(value, root.right);
+    }
   }
 }

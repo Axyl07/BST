@@ -8,7 +8,10 @@ console.log(tree);
 // tree.deleteItem(7,tree.root)
 // tree.deleteItem(15,tree.root)
 // tree.deleteItem(3,tree.root) 
-// tree.deleteItem(5,tree.root)
+// tree.deleteItem(8, tree.root)
+// let f67 = tree.find(67, tree.root);
+// console.log(f67);
+console.log(tree.find(324, tree.root));
 tree.prettyPrint(tree.root);
 console.log(tree);
 // console.log(tree1.insert(6));
