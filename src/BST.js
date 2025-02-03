@@ -13,8 +13,10 @@ export class Tree {
   constructor(array) {
     this.array = this.cleanArray(array);
     console.log(this.array);
+    console.log(this.array.length);
     let root = this.buildTree(this.array,0,this.array.length-1);
     console.log(root);
+    this.prettyPrint(root);
   }
 
   buildTree(array, start, end) {
@@ -33,4 +35,18 @@ cleanArray(array) {
     (element, index) => sortedArray.indexOf(element) === index);
   return duplicatesFreeArray;
 }
+  
+ prettyPrint(node, prefix = "", isLeft = true){
+  if (node === null) {
+    return;
+  }
+  if (node.right !== null) {
+    this.prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+  }
+  console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+  if (node.left !== null) {
+    this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+  }
+}
+
 }
