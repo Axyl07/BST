@@ -1,6 +1,4 @@
-// export default function () {
-//   return console.log("is this working>/?");
-// }
+
 export class Node {
   constructor(data, left, right) {
     this.data = data;
@@ -14,10 +12,9 @@ export class Tree {
     this.array = this.cleanArray(array);
     console.log(this.array);
     console.log(this.array.length);
-    let root = this.buildTree(this.array,0,this.array.length-1);
-    console.log(root);
-    this.prettyPrint(root);
+     this.root = this.buildTree(this.array,0,this.array.length-1);
   }
+
 
   buildTree(array, start, end) {
   if (start>end) {
@@ -47,6 +44,20 @@ cleanArray(array) {
   if (node.left !== null) {
     this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
-}
-
+ }
+  
+  insert(value,root) {
+    if (root===null) {
+      return new Node(value,null,null);
+    }
+    if (root.data === value) {
+      return root; //to prevent duplicates
+    }
+    if (value<root.data) {
+       root.left = this.insert(value,root.left);
+    } else if(value>root.data) {
+      root.right = this.insert(value, root.right);
+    }
+    return root;
+  }
 }
