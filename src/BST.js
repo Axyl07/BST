@@ -150,6 +150,18 @@ export class Tree {
       this.preOrder(callback, node.right);
     }
   }
+  inOrder(callback, node = this.root) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback is required");
+    } else {
+      if (node === null) {
+        return;
+      }
+      this.inOrder(callback, node.left);
+      callback(node);
+      this.inOrder(callback, node.right);
+    }
+  }
   postOrder(callback, node = this.root) {
     if (typeof callback !== "function") {
       throw new Error("Callback is required");
@@ -163,24 +175,6 @@ export class Tree {
     }
   }
 
-  INorder(node) {
-    if (node === null) return;
-    this.INorder(node.left);
-    console.log(node.data);
-    this.INorder(node.right);
-  }
 
-  inOrder(callback, node = this.root) {
-    if (typeof callback !== "function") {
-      throw new Error("Callback is required");
-    } else {
-      if (node === null) {
-        return;
-      }
-      this.inOrder(callback, node.left);
-      callback(node);
-      this.inOrder(callback, node.right);
-    }
-  }
 
 }

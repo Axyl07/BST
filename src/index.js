@@ -17,17 +17,18 @@ console.log(tree.find(324, tree.root));
 // tree.levelOrder((node) => {
 //     console.log(node.data*=2);
 // });
-// tree.preOrder((node) => {
-//     console.log(node.data);
-// })
 // console.log(tree.INorder(tree.root));
+tree.preOrder((node) => {
+    console.log(node.data);
+})
 
 tree.inOrder((node) => {
     console.log(node.data);
 })
-// tree.postOrder((node) => {
-//     console.log(node.data);
-// })
+
+tree.postOrder((node) => {
+    console.log(node.data);
+})
 tree.prettyPrint(tree.root);
 // tree.levelOrder(log);
 // function log(node) {
