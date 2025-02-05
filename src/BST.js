@@ -49,7 +49,7 @@ export class Tree {
     }
   }
 
-  insert(value, root) {
+  insert(value, root = this.root) {
     if (root === null) {
       return new Node(value, null, null);
     }
@@ -77,7 +77,7 @@ export class Tree {
     return curentNode;
   }
 
-  deleteItem(value, root) {
+  deleteItem(value, root = this.root) {
     if (root === null) {
       return root;
     }
@@ -106,7 +106,7 @@ export class Tree {
     }
     return root; //return the current root node to bubble up for recursion calls
   }
-  find(value, root) {
+  find(value, root = this.root) {
     if (root === null) {
       return root;
     }
@@ -175,6 +175,32 @@ export class Tree {
     }
   }
 
-
+  height(node) {
+    let leftHeight = 0;
+    let rightHeight = 0;
+    if (node.left !== null) {
+    while (node.left !== null) {
+      leftHeight++;
+      node = node.left;
+    }
+    while (node.right !== null) {
+      leftHeight++;
+      node = node.right;
+    }
+    }
+    
+    if (node.right !== null) {
+    while (node.right !== null) {
+      rightHeight++;
+      node = node.right;
+    }
+    while (node.left !== null) {
+      rightHeight++;
+      node = node.left;
+    }
+    }
+    let maxHeight = Math.max(leftHeight, rightHeight);
+    return maxHeight; 
+}
 
 }
