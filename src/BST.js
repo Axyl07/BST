@@ -119,11 +119,11 @@ export class Tree {
     }
   }
   levelOrder(callback) {
-    if (typeof callback !== 'function') {
+    if (typeof callback !== "function") {
       throw new Error("Callback is required");
     } else {
       let queue = [];
-      const rootNode = this.root
+      const rootNode = this.root;
       queue.push(rootNode);
       while (queue.length !== 0) {
         let currentNode = queue[0];
@@ -138,4 +138,17 @@ export class Tree {
       }
     }
   }
+  preOrder(callback, node = this.root) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback is required");
+    } else {
+      if (node === null) {
+        return;
+      }
+      callback(node);
+      this.preOrder(callback, node.left);
+      this.preOrder(callback, node.right);
+    }
+  }
+  
 }

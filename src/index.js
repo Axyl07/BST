@@ -13,11 +13,15 @@ console.log(tree);
 // let f67 = tree.find(67, tree.root);
 // console.log(f67);
 console.log(tree.find(324, tree.root));
+// tree.PreOrder();
 // const rootNode = tree.root;
-tree.prettyPrint(tree.root);
-tree.levelOrder((node) => {
-    console.log(node.data*=2);
-});
+// tree.prettyPrint(tree.root);
+// tree.levelOrder((node) => {
+//     console.log(node.data*=2);
+// });
+tree.preOrder((node) => {
+    console.log(node.data);
+})
 tree.prettyPrint(tree.root);
 // tree.levelOrder(log);
 // function log(node) {
