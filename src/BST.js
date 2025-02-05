@@ -83,29 +83,28 @@ export class Tree {
     }
     if (value < root.data) {
       root.left = this.deleteItem(value, root.left);
-    }
-    else if (value > root.data) {
+    } else if (value > root.data) {
       root.right = this.deleteItem(value, root.right);
     } else {
       if (value === root.data) {
         if (root.left === null && root.right === null) {
           root = null;
-          return root;//for leaf node
+          return root; //for leaf node
         }
-        if (root.left===null) {
-          return root.right; //if only right child is present 
+        if (root.left === null) {
+          return root.right; //if only right child is present
         }
-        if (root.right===null) {
+        if (root.right === null) {
           return root.left; //if only left child is present
-        }
-        else if (root.right !== null && root.left !== null) { //when both childs are present
+        } else if (root.right !== null && root.left !== null) {
+          //when both childs are present
           const successor = this.getSuccessor(root);
           root.data = successor.data;
           root.right = this.deleteItem(successor.data, root.right);
         }
       }
     }
-    return root; //return the current root node to bubble up for recursion calls  
+    return root; //return the current root node to bubble up for recursion calls
   }
   find(value, root) {
     if (root === null) {
@@ -119,5 +118,24 @@ export class Tree {
       return this.find(value, root.right);
     }
   }
-  levelOrder(callback) {}
+  levelOrder(callback) {
+    if (typeof callback !== 'function') {
+      throw new Error("Callback is required");
+    } else {
+      let queue = [];
+      const rootNode = this.root
+      queue.push(rootNode);
+      while (queue.length !== 0) {
+        let currentNode = queue[0];
+        callback(currentNode);
+        if (currentNode.left != null) {
+          queue.push(currentNode.left);
+        }
+        if (currentNode.right != null) {
+          queue.push(currentNode.right);
+        }
+        queue.shift();
+      }
+    }
+  }
 }

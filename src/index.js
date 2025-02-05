@@ -5,14 +5,28 @@ const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 console.log(tree);
 // console.log(tree1.root);
 // tree.insert(15,tree.root)
-tree.deleteItem(8,tree.root)
+// tree.deleteItem(8, tree.root)
+
 // tree.deleteItem(15,tree.root)
 // tree.deleteItem(3,tree.root) 
 // tree.deleteItem(8, tree.root)
 // let f67 = tree.find(67, tree.root);
 // console.log(f67);
 console.log(tree.find(324, tree.root));
+// const rootNode = tree.root;
 tree.prettyPrint(tree.root);
+tree.levelOrder((node) => {
+    console.log(node.data*=2);
+});
+tree.prettyPrint(tree.root);
+// tree.levelOrder(log);
+// function log(node) {
+//     console.log(node.data);
+//     return node;
+// }
+// tree.test(logData(tree.root));
+
+
 console.log(tree);
 // console.log(tree1.insert(6));
 
