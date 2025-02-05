@@ -65,39 +65,47 @@ export class Tree {
   }
 
   getSuccessor(curentNode) {
+    // curentNode = curentNode.right;
+    // while (curentNode !== null && curentNode.left !== null) {
+    //   curentNode = curentNode.left;
+    // }
+    // return curentNode;
     curentNode = curentNode.right;
-    while (curentNode !== null && curentNode.left !== null) {
+    while (curentNode.left != null && curentNode != null) {
       curentNode = curentNode.left;
     }
     return curentNode;
   }
+
   deleteItem(value, root) {
     if (root === null) {
-      return root; //base case
+      return root;
     }
-    if (value<root.data) {
-      root.left = this.deleteItem(value,root.left)
-    } else if (value > root.data) {
-      root.right = this.deleteItem(value,root.right)//traverse from the root till correct node is reached
+    if (value < root.data) {
+      root.left = this.deleteItem(value, root.left);
     }
-    else { //when value is equal to the node's value
-      if (root.left===null) {
-        return root.right;
+    else if (value > root.data) {
+      root.right = this.deleteItem(value, root.right);
+    } else {
+      if (value === root.data) {
+        if (root.left === null && root.right === null) {
+          root = null;
+          return root;//for leaf node
+        }
+        if (root.left===null) {
+          return root.right; //if only right child is present 
+        }
+        if (root.right===null) {
+          return root.left; //if only left child is present
+        }
+        else if (root.right !== null && root.left !== null) { //when both childs are present
+          const successor = this.getSuccessor(root);
+          root.data = successor.data;
+          root.right = this.deleteItem(successor.data, root.right);
+        }
       }
-      if (root.right===null) {
-        return root.left;
-      } //cases when there is only single child of the target node
-      
-      let successor = this.getSuccessor(root);
-      root.data = successor.data;
-      root.right = this.deleteItem(successor.data, root.right);//case when both childs are present
-      
-      
-      
     }
-    return root;
-
-    
+    return root; //return the current root node to bubble up for recursion calls  
   }
   find(value, root) {
     if (root === null) {
@@ -105,12 +113,11 @@ export class Tree {
     }
     if (root.data === value) {
       return root;
-    }
-    else if (value < root.data) {
+    } else if (value < root.data) {
       return this.find(value, root.left);
-    }
-    else if (value > root.data) {
+    } else if (value > root.data) {
       return this.find(value, root.right);
     }
   }
+  levelOrder(callback) {}
 }
