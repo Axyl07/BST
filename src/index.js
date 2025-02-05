@@ -10,6 +10,7 @@ tree.insert(15)
 tree.deleteItem(15)
 tree.deleteItem(3) 
 let f67 = tree.find(67);
+let f6345 = tree.find(6345);
 console.log(f67);
 console.log(tree.find(324, tree.root));
 
@@ -30,6 +31,7 @@ tree.postOrder((node) => {
 })
 
 console.log(tree.height(tree.root));
+console.log(tree.depth(f6345));
 tree.prettyPrint(tree.root);
 
 

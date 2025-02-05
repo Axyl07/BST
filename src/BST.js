@@ -201,6 +201,23 @@ export class Tree {
     }
     let maxHeight = Math.max(leftHeight, rightHeight);
     return maxHeight; 
-}
+  }
+  depth(node,rootNode = this.root,d =0) {
+    if (node.data === rootNode.data) {
+      return d;
+    }
+    if (rootNode===null) {
+      return;
+    }
+    else if (node.data < rootNode.data) {
+      d++;
+      return this.depth(node,rootNode.left,d)
+    }
+    else if (node.data > rootNode.data) {
+      d++;
+      return this.depth(node,rootNode.right,d)
+    }
+    return d;
+  }
 
 }
