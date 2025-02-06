@@ -6,7 +6,11 @@ console.log(tree);
 // console.log(tree1.root);
 
 // tree.deleteItem(8)
-tree.insert(15)
+tree.insert(45645)
+tree.insert(45646)
+tree.insert(45647)
+tree.insert(45648)
+tree.insert(45649)
 tree.insert(6)
 tree.insert(2)
 tree.insert(0)
@@ -32,10 +36,12 @@ tree.inOrder((node) => {
 tree.postOrder((node) => {
     console.log(node.data);
 })
-tree.rebalance();
+// console.log(tree.height(tree.root));
 // console.log(tree.height(f67));
-console.log(tree.depth(f6345));
+// console.log(tree.height(tree.find(4)));
 console.log(tree.isBalanced());
+// tree.rebalance();
+console.log(tree.depth(f6345));
 tree.prettyPrint(tree.root);
 
 console.log(tree);

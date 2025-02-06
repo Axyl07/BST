@@ -177,33 +177,13 @@ export class Tree {
 
   height(node) {
     if (node === null) {
-      return 0;
+      return -1;
     }
-    let leftHeight = 0;
-    let rightHeight = 0;
-    if (node.left !== null) {
-    while (node.left !== null) {
-      leftHeight++;
-      node = node.left;
-    }
-    while (node.right !== null) {
-      leftHeight++;
-      node = node.right;
-    }
-    }
+    let leftHeight = this.height(node.left);
+    let rightHeight = this.height(node.right);
+    return Math.max(leftHeight, rightHeight)+1 ;
+      
     
-    if (node.right !== null) {
-    while (node.right !== null) {
-      rightHeight++;
-      node = node.right;
-    }
-    while (node.left !== null) {
-      rightHeight++;
-      node = node.left;
-    }
-    }
-    let maxHeight = Math.max(leftHeight, rightHeight)+1;
-    return maxHeight; 
   }
   depth(node,rootNode = this.root,d =0) {
     if (node.data === rootNode.data) {
@@ -223,15 +203,16 @@ export class Tree {
     return d;
   }
   isBalanced() {
-    this.levelOrder((node) => {
-      let leftHeight = this.height(node.left) ;
-      let rightHeight = this.height(node.right);
-      let difference = leftHeight - rightHeight;
+    let balanced = true;
+    this.preOrder((node) => {
+      let leftHeight = this.height(node.left) + 1;
+      let rightHeight = this.height(node.right)+ 1;
+      let difference = Math.abs(leftHeight - rightHeight);
       if (difference > 1) {
-        return false;
-      }  
+        balanced = false;
+      }
     })
-    return true;
+    return balanced;
     }
   rebalance() {
     let sortedArray = [];
