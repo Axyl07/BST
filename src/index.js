@@ -32,7 +32,7 @@ tree.inOrder((node) => {
 tree.postOrder((node) => {
     console.log(node.data);
 })
-
+tree.rebalance();
 // console.log(tree.height(f67));
 console.log(tree.depth(f6345));
 console.log(tree.isBalanced());

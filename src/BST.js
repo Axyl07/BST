@@ -233,5 +233,12 @@ export class Tree {
     })
     return true;
     }
-    
+  rebalance() {
+    let sortedArray = [];
+    this.inOrder((node) => {
+      sortedArray.push(node.data)
+    })
+    console.log(sortedArray);
+    this.root = this.buildTree(sortedArray, 0, sortedArray.length - 1);
+    }
   }
