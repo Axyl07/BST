@@ -176,6 +176,9 @@ export class Tree {
   }
 
   height(node) {
+    if (node === null) {
+      return 0;
+    }
     let leftHeight = 0;
     let rightHeight = 0;
     if (node.left !== null) {
@@ -199,7 +202,7 @@ export class Tree {
       node = node.left;
     }
     }
-    let maxHeight = Math.max(leftHeight, rightHeight);
+    let maxHeight = Math.max(leftHeight, rightHeight)+1;
     return maxHeight; 
   }
   depth(node,rootNode = this.root,d =0) {
@@ -218,6 +221,16 @@ export class Tree {
       return this.depth(node,rootNode.right,d)
     }
     return d;
+  }
+  isBalanced() {
+    this.levelOrder((node) => {
+      let leftHeight = this.height(node.left) ;
+      let rightHeight = this.height(node.right);
+      let difference = leftHeight - rightHeight;
+      if (difference > 1) {
+        return false;
+      } else return true;
+    })
   }
 
 }
