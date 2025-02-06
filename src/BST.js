@@ -229,8 +229,9 @@ export class Tree {
       let difference = leftHeight - rightHeight;
       if (difference > 1) {
         return false;
-      } else return true;
+      }  
     })
+    return true;
+    }
+    
   }
-
-}

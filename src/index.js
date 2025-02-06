@@ -1,5 +1,5 @@
 
-import { Tree } from "./BST";
+import { Tree } from "./BST.js";
 const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 // const tree1 = new Tree([1,2,3,4,5]);
 console.log(tree);
@@ -7,6 +7,9 @@ console.log(tree);
 
 // tree.deleteItem(8)
 tree.insert(15)
+tree.insert(6)
+tree.insert(2)
+tree.insert(0)
 // tree.deleteItem(15)
 // tree.deleteItem(3) 
 let f67 = tree.find(67);
@@ -30,9 +33,9 @@ tree.postOrder((node) => {
     console.log(node.data);
 })
 
-console.log(tree.height(f67));
+// console.log(tree.height(f67));
 console.log(tree.depth(f6345));
-// console.log(tree.isBalanced());
+console.log(tree.isBalanced());
 tree.prettyPrint(tree.root);
 
 console.log(tree);
