@@ -1,5 +1,16 @@
 
 import { Tree } from "./BST.js";
+
+function generateRandomArray(max,min=0) {
+    let array = [];
+    for (let index = min; index < max; index++) {
+        array.push(Math.floor(Math.random()*max))    
+    }
+    return array;
+}
+
+console.log(generateRandomArray(10));
+
 const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 // const tree1 = new Tree([1,2,3,4,5]);
 console.log(tree);
@@ -40,9 +51,11 @@ tree.postOrder((node) => {
 // console.log(tree.height(f67));
 // console.log(tree.height(tree.find(4)));
 console.log(tree.isBalanced());
-// tree.rebalance();
-console.log(tree.depth(f6345));
 tree.prettyPrint(tree.root);
+tree.rebalance();
+console.log(tree.isBalanced());
+tree.prettyPrint(tree.root);
+console.log(tree.depth(f6345));
 
 console.log(tree);
 
